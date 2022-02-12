@@ -7,11 +7,14 @@
     {
         public const string DefaultUriString = "https://tretton37.com/";
         public const string Cdn = "cdn.";
+        public const string Downloading = "Downloading...";
 
         public static class LogMessages
         {
             public const string StartingProgram = "The program is starting...";
             public const string SourceDownloadCompleted = "The HTML string has been downloaded.";
+            public const string CompletedExtractingDownloadableFiles = "Completed extracting downloadable files.";
+            public const string NoItemsToDownload = "There are no files to download.";
         }
 
         public static class DownloadableHtmlNodes
