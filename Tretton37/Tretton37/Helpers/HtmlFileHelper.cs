@@ -22,6 +22,7 @@ namespace Tretton37.Helpers
         private static int totalCount = 0;
         private static bool isDownloadingStarted = false;
         private readonly ILogHelper logHelper = LoggerFactory.CreateInstance();
+        private static object syncLock = new object();
 
         #endregion Declarations
 
@@ -138,13 +139,16 @@ namespace Tretton37.Helpers
 
         private void ShowDownloadingPercentage()
         {
-            if (isDownloadingStarted)
+            lock (syncLock)
             {
-                // remove the last console.
-                Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop - 1);
-            }
+                if (isDownloadingStarted)
+                {
+                    // remove the last console.
+                    Console.SetCursorPosition(Console.CursorLeft, Console.CursorTop - 1);
+                }
 
-            logHelper.Write($"{Constants.Downloading} {DownloadingPercentage}%");
+                logHelper.Write($"{Constants.Downloading} {DownloadingPercentage}%");
+            }
         }
 
         private List<string> GetResourcesUris(HtmlDocument document)
