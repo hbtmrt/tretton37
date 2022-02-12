@@ -11,6 +11,7 @@ namespace Tretton37
         static void Main(string[] args)
         {
             logHelper.Write(Constants.LogMessages.StartingProgram);
+            string uri = new ArgumentHelper().GetWebsiteLink(args);
         }
     }
 }
