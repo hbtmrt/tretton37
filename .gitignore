@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Tretton37/Tretton37/obj
+/Tretton37/Tretton37/bin/Debug/netcoreapp3.1
+/Tretton37/Tretton37.Core/obj
+/Tretton37/Tretton37.Core/bin/Debug/netcoreapp3.1
