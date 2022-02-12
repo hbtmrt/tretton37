@@ -36,3 +36,5 @@ Currently the program extracts only images, links and scripts. But that can be e
 https://github.com/hbtmrt/tretton37/actions
 2. A custom exception class "**ResourceExtractionException**" is used to handle specific errors due to extraction.
 3. An asynchronous download mechanism is used to speed the download progress.
+4. Percentage of downloaded files is calculated as follows.
+> percentage = (downloaded count / total count) * 100%;
