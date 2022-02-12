@@ -1,5 +1,4 @@
-﻿using System;
-using Tretton37.Core;
+﻿using Tretton37.Core;
 
 namespace Tretton37.Helpers
 {
