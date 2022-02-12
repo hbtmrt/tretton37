@@ -1,12 +1,16 @@
 ﻿using System;
+using Tretton37.Core;
+using Tretton37.Helpers;
 
 namespace Tretton37
 {
     class Program
     {
+        private static readonly LogHelper logHelper = new LogHelper();
+
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            logHelper.Write(Constants.LogMessages.StartingProgram);
         }
     }
 }
