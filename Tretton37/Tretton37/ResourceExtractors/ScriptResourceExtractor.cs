@@ -1,8 +1,10 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Tretton37.Core.Statics.Enums;
+using System.Linq;
+using Tretton37.Core;
+using Tretton37.Core.CustomExceptions;
+using Tretton37.Helpers;
 
 namespace Tretton37.ResourceExtractors
 {
@@ -13,7 +15,23 @@ namespace Tretton37.ResourceExtractors
     {
         public List<string> Extract(HtmlDocument document)
         {
-            return new List<string>();
+            try
+            {
+                UriHelper uriHelper = new UriHelper();
+                return document.DocumentNode
+                       .Descendants(Constants.DownloadableHtmlNodes.Script)
+                       .Select(n => n.Attributes[Constants.HtmlAttributes.Src])
+                       .Where(a => a != null
+                            && !string.IsNullOrWhiteSpace(a.Value)
+                            && !a.Value.Contains(Constants.Cdn)
+                            && !uriHelper.IsUri(a.Value))
+                       .Select(s => s.Value)
+                       .ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new ResourceExtractionException(ex.Message);
+            }
         }
     }
 }
