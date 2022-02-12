@@ -61,11 +61,11 @@ namespace Tretton37.Helpers
 
             List<Task> tasks = new List<Task>();
             //// Start downloading
-            int countFraction = (int)Math.Ceiling(((double)resoucesUris.Count) / Constants.NoOfAsyncProcesses);
+            int countFraction = (int)Math.Ceiling(((double)totalCount) / Constants.NoOfAsyncProcesses);
             for (int i = 0; i < Constants.NoOfAsyncProcesses; i++)
             {
                 int min = i * countFraction;
-                int itemCount = (i + 1) * countFraction > resoucesUris.Count ? resoucesUris.Count - i * countFraction : countFraction;
+                int itemCount = (i + 1) * countFraction > totalCount ? totalCount - i * countFraction : countFraction;
                 Task task = SaveFilesAsync(uri, resoucesUris.GetRange(min, itemCount));
                 tasks.Add(task);
             }

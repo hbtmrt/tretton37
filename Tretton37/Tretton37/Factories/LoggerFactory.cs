@@ -7,10 +7,11 @@ namespace Tretton37.Factories
     /// </summary>
     public static class LoggerFactory
     {
+        private static ILogHelper consoleLogHelper = new ConsoleLogHelper();
         public static ILogHelper CreateInstance()
         {
             // currently we have only writing to the console, but in future we can extend it to write any other tools.
-            return new ConsoleLogHelper();
+            return consoleLogHelper;
         }
     }
 }

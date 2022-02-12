@@ -21,7 +21,10 @@ namespace Tretton37.ResourceExtractors
                 return document.DocumentNode
                        .Descendants(Constants.DownloadableHtmlNodes.Image)
                        .Select(n => n.Attributes[Constants.HtmlAttributes.Src])
-                       .Where(a => a != null && !string.IsNullOrWhiteSpace(a.Value) && !uriHelper.IsUri(a.Value))
+                       .Where(a => a != null
+                            && !string.IsNullOrWhiteSpace(a.Value)
+                            && !a.Value.Contains("//")
+                            && !uriHelper.IsUri(a.Value))
                        .Select(s => s.Value)
                        .ToList();
             }

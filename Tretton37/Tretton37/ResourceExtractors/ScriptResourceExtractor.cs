@@ -24,6 +24,7 @@ namespace Tretton37.ResourceExtractors
                        .Where(a => a != null
                             && !string.IsNullOrWhiteSpace(a.Value)
                             && !a.Value.Contains(Constants.Cdn)
+                            && !a.Value.Contains("//")
                             && !uriHelper.IsUri(a.Value))
                        .Select(s => s.Value)
                        .ToList();
