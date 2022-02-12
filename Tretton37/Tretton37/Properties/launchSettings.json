@@ -1,8 +1,7 @@
 {
   "profiles": {
     "Tretton37": {
-      "commandName": "Project",
-      "commandLineArgs": "https://aeturnum.com/"
+      "commandName": "Project"
     }
   }
 }
