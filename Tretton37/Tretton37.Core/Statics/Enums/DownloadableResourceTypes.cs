@@ -7,6 +7,7 @@
     {
         Image,
         Links,
-        Scripts
+        Scripts,
+        Meta
     }
 }

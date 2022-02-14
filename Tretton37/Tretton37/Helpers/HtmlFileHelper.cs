@@ -1,7 +1,6 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Tretton37.Core;
@@ -27,6 +26,7 @@ namespace Tretton37.Helpers
 
         internal async Task DownloadFilesAsync(string uri, HtmlDocument document)
         {
+            logHelper.Write(Constants.LogMessages.GatheringInformation);
             List<string> resoucesUris = GetResourcesUris(document);
             logHelper.Write(Constants.LogMessages.CompletedExtractingDownloadableFiles);
 
@@ -54,7 +54,8 @@ namespace Tretton37.Helpers
                 uris.AddRange(ResourceExtractorFactory.CreateInstance(type).Extract(document));
             }
 
-            return uris;
+            // Filter to have unique values since diffrent pages may have same resource.
+            return uris.Distinct().ToList();
         }
 
         #endregion Methods - Helpers

@@ -19,6 +19,7 @@
             public const string NoItemsToDownload = "There are no files to download.";
             public const string DownloadingFilesCompleted = "All the files have been downloaded to your disk.";
             public const string ExcecutingFinished = "The program completed excecuting.";
+            public const string GatheringInformation = "Gathering information...";
         }
 
         public static class DownloadableHtmlNodes
@@ -26,12 +27,14 @@
             public const string Image = "img";
             public const string Link = "link";
             public const string Script = "script";
+            public const string Meta = "meta";
         }
 
         public static class HtmlAttributes
         {
             public const string Src = "src";
             public const string Href = "href";
+            public const string Content = "content";
         }
     }
 }

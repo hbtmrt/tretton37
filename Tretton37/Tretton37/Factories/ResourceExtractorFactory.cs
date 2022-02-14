@@ -13,6 +13,7 @@ namespace Tretton37.Factories
             {
                 DownloadableResourceTypes.Image => new ImageResourceExtractor(),
                 DownloadableResourceTypes.Links => new LinkResourceExtractor(),
+                DownloadableResourceTypes.Meta => new MetaResourceExtractor(),
                 _ => new ScriptResourceExtractor()
             };
     }
