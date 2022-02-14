@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 
 namespace Tretton37.ResourceExtractors
@@ -14,6 +15,6 @@ namespace Tretton37.ResourceExtractors
         /// <param name="document">The HTML document</param>
         /// <param name="resourceType">The type of the resource.</param>
         /// <returns>A list of downloadable resources.</returns>
-        List<string> Extract(HtmlDocument document);
+        List<Uri> Extract(Uri origin, HtmlDocument document);
     }
 }

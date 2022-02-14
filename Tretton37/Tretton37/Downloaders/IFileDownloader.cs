@@ -8,6 +8,6 @@ namespace Tretton37.Downloaders
     /// </summary>
     public interface IFileDownloader
     {
-        Task Download(string uri, List<string> resoucesUris);
+        Task DownloadAsync(string uri, List<string> resoucesUris);
     }
 }

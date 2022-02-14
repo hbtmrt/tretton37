@@ -40,7 +40,7 @@ namespace Tretton37.Downloaders
 
         #region Methods - Instance Members
 
-        public async Task Download(string uri, List<string> resoucesUris)
+        public async Task DownloadAsync(string uri, List<string> resoucesUris)
         {
             totalCount = resoucesUris.Count;
             DeleteFileContainer();
@@ -113,7 +113,7 @@ namespace Tretton37.Downloaders
 
         private void CreateFolderPath(string path)
         {
-            string directory = Path.GetDirectoryName(path); ;
+            string directory = Path.GetDirectoryName(path);
             if (!Directory.Exists(directory))
             {
                 Directory.CreateDirectory(directory);

@@ -5,6 +5,7 @@ using Tretton37.Core;
 using Tretton37.Core.CustomExceptions;
 using Tretton37.Factories;
 using Tretton37.Helpers;
+using Tretton37.Managers;
 
 namespace Tretton37
 {
@@ -20,9 +21,13 @@ namespace Tretton37
             // uri is never gonna empty, so we don't need to handle for null.
             try
             {
-                HtmlDocument document = new HtmlWeb().Load(uri);
-                logHelper.Write(Constants.LogMessages.SourceDownloadCompleted);
-                await new HtmlFileHelper().DownloadFilesAsync(uri, document);
+                //HtmlDocument document = new HtmlWeb().Load(uri);
+                //logHelper.Write(Constants.LogMessages.SourceDownloadCompleted);
+
+                // Manager
+                await new DownloadManager(uri).DownloadAsync();
+                // TODO: pass uri only
+                //await new HtmlFileHelper().DownloadFilesAsync(uri, document);
                 logHelper.Write(Constants.LogMessages.DownloadingFilesCompleted);
             }
             catch (ResourceExtractionException ex)

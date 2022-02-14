@@ -10,7 +10,7 @@ namespace Tretton37.ResourceExtractors
 {
     public sealed class MetaResourceExtractor : IResourceExtractor
     {
-        public List<string> Extract(HtmlDocument document)
+        public List<Uri> Extract(Uri origin, HtmlDocument document)
         {
             try
             {
@@ -21,7 +21,7 @@ namespace Tretton37.ResourceExtractors
                        .Where(a => a != null
                             && !string.IsNullOrWhiteSpace(a.Value)
                             && uriHelper.IsUri(a.Value))
-                       .Select(s => new Uri(s.Value).LocalPath)
+                       .Select(s => new Uri(s.Value))
                        .Distinct()
                        .ToList();
             }

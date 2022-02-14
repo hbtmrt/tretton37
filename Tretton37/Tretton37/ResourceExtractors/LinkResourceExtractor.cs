@@ -13,7 +13,7 @@ namespace Tretton37.ResourceExtractors
     /// </summary>
     public sealed class LinkResourceExtractor : IResourceExtractor
     {
-        public List<string> Extract(HtmlDocument document)
+        public List<Uri> Extract(Uri origin, HtmlDocument document)
         {
             try
             {
@@ -25,7 +25,8 @@ namespace Tretton37.ResourceExtractors
                             && !string.IsNullOrWhiteSpace(a.Value)
                             && !a.Value.Contains("//")
                             && !uriHelper.IsUri(a.Value))
-                       .Select(s => s.Value)
+                       .Select(s => new Uri($"{origin.AbsoluteUri}/{s.Value}"))
+                       .Distinct()
                        .ToList();
             }
             catch (Exception ex)

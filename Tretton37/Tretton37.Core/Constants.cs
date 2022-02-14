@@ -9,6 +9,7 @@
         public const string Cdn = "cdn.";
         public const string Downloading = "Downloading...";
         public const int NoOfAsyncProcesses = 5;
+        public const int ProcessesPerTask = 5;
         public const string FileContainerName = "Tretton Files";
 
         public static class LogMessages
@@ -28,6 +29,7 @@
             public const string Link = "link";
             public const string Script = "script";
             public const string Meta = "meta";
+            public const string ATag = "a";
         }
 
         public static class HtmlAttributes

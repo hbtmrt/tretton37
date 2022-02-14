@@ -26,36 +26,47 @@ namespace Tretton37.Helpers
 
         internal async Task DownloadFilesAsync(string uri, HtmlDocument document)
         {
-            logHelper.Write(Constants.LogMessages.GatheringInformation);
-            List<string> resoucesUris = GetResourcesUris(document);
-            logHelper.Write(Constants.LogMessages.CompletedExtractingDownloadableFiles);
+            //logHelper.Write(Constants.LogMessages.GatheringInformation);
+            //List<string> resoucesUris = GetResources(document);
+            //logHelper.Write(Constants.LogMessages.CompletedExtractingDownloadableFiles);
 
-            int totalCount = resoucesUris.Count();
+            //int totalCount = resoucesUris.Count();
 
-            if (totalCount == 0)
-            {
-                logHelper.Write(Constants.LogMessages.NoItemsToDownload);
-                return;
-            }
+            //if (totalCount == 0)
+            //{
+            //    logHelper.Write(Constants.LogMessages.NoItemsToDownload);
+            //    return;
+            //}
 
-            await FileDownloaderFactory.CreateInstance().Download(uri, resoucesUris);
+            //await FileDownloaderFactory.CreateInstance().DownloadAsync(uri, resoucesUris);
         }
 
         #endregion Methods - Instance Members
 
         #region Methods - Helpers
 
-        private List<string> GetResourcesUris(HtmlDocument document)
+        public List<Uri> GetResources(Uri origin, HtmlDocument document)
         {
-            List<string> uris = new List<string>();
+            List<Uri> uris = new List<Uri>();
 
             foreach (DownloadableResourceTypes type in Enum.GetValues(typeof(DownloadableResourceTypes)))
             {
-                uris.AddRange(ResourceExtractorFactory.CreateInstance(type).Extract(document));
+                uris.AddRange(ResourceExtractorFactory.CreateInstance(type).Extract(origin, document));
             }
 
             // Filter to have unique values since diffrent pages may have same resource.
             return uris.Distinct().ToList();
+        }
+
+        public List<Uri> GetResourceUris(Uri origin, List<HtmlDocument> documents)
+        {
+            List<Uri> uris = new List<Uri>();
+
+            documents.ForEach(document => {
+                uris.AddRange(GetResources(origin, document));
+            });
+
+            return uris;
         }
 
         #endregion Methods - Helpers
